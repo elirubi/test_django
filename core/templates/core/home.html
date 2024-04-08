@@ -2,6 +2,12 @@
 
 {% block header %}
     <header class="row align-items-center">
-        <h1 class="display-1 text-shadow col-12 col-md-6 text-center">Welcome friend</h1>
+        <h1 class="display-3 text-shadow col-12 col-md-6 text-center">
+            {% if user.is_authenticated %}
+                Welcome back, {{ user.username }}!
+            {% else %}
+                Welcome, new friend!
+            {% endif %}
+        </h1>
     </header>
 {% endblock %}  

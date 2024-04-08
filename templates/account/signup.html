@@ -1,0 +1,23 @@
+{% extends 'core/common.html' %}
+
+{% block content %}
+<h2 class="text-center my-5">Sign Up</h2>
+<form class="d-flex flex-column gap-3 col-12 col-md-6 mx-auto" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {% for field in form %}
+        
+        <div class="form-floating">
+            <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="form-control {% if field.errors %} is-invalid {% endif %}" placeholder="name@example.com" id="{{ field.id_for_label }}">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% if field.errors %}
+            {% for error in field.errors %}
+                <div class="small text-danger ">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+        </div>
+
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Signup</button>
+</form>
+
+{% endblock %}  

@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'ads.apps.AdsConfig',
     'polls.apps.PollsConfig',
-    'debug_toolbar'
+    'debug_toolbar',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -51,8 +56,8 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'presto_django.urls'
@@ -135,4 +140,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+SITE_ID = 1
+
+# Impostazioni di autenticazione
+AUTHENTICATION_BACKENDS = (
+    # Backend di autenticazione di default di Django
+    'django.contrib.auth.backends.ModelBackend',
+    # Backend di autenticazione specifico di `allauth`
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Opzioni: 'mandatory', 'optional', o 'none'
+
+LOGIN_REDIRECT_URL = '/'
     
