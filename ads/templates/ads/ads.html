@@ -1,0 +1,19 @@
+{% extends 'core/common.html' %}
+
+{% block content %}
+<h1 class="mt-4 text-center">I migliori annunci</h1>
+<div class="row mt-3 g-3 mx-auto">
+  {% for ad in ads %}
+  <div class="col-sm">
+      <div class="card mx-auto" style="width: 18rem;">
+          <img src="{{ ad.image.url }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ ad.name }}</h5>
+            <p class="card-text">€ {{ ad.price }}</p>
+            <a href="#" class="btn btn-primary">Shop</a>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
